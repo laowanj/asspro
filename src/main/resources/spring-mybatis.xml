@@ -61,13 +61,13 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:blog/mapper/imp/*.xml</value>
+				<value>classpath:com/assinfo/mapper/impl/*.xml</value>
 			</list>
 		</property>
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="blog.mapper" />
+		<property name="basePackage" value="com.assinfo.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
@@ -107,22 +107,4 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		<aop:pointcut id="transactionPointcut" expression="execution(* com.assinfo.service..*impl.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
 	</aop:config>
-
-
-	<!-- 配置druid监控spring jdbc -->
-	<!--  
-	<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
-	</bean>
-	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
-		<property name="patterns">
-			<list>
-				<value>blog.service.imp.*</value>	
-			</list>
-		</property>
-	</bean>
-	<aop:config>
-		<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
-	</aop:config>
--->
-
 </beans>
